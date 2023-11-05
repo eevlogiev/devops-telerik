@@ -1,0 +1,8 @@
+docker build -t flask:v5 .
+docker run -d -p 6000:5000 flask:v5
+git branch flask-app
+git add .
+git commit -m "added Dockerfile"
+git push --set-upstream origin flask-app
+docker tag flask:v7 dictator1/flask:v7
+docker push dictator1/flask:v7
