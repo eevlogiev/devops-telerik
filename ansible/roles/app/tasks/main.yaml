@@ -13,13 +13,13 @@
         dest: "{{ code_dir }}"
 
     - name: Install Python libraries
-      pip: 
+      pip:
         chdir: "{{ code_dir }}"
         requirements: "requirements.txt"
         state: present 
   
     - name: Start FLask app
-      shell: "flask run -h {{ app_host }} -p {{ app_port }} &"
+      shell: "python3 app.py &"
       args: 
         chdir: "{{ code_dir }}/app"
   

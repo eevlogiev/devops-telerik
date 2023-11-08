@@ -1,0 +1,5 @@
+#Variable Declaration
+variable "public_key" {
+  type    = string
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCeBydGij2VxTQQJfD7A8N+PGabT6hbdgRh/1zukVYfL7TSCLnIcSScxy3mGfBw1xdEt3nGV5lcNAfeDRSWxRmZrB3icw0jxrreST0YD4SfuQKzhMrAR7sqOweeJtAmoTa34owskRY90nvApYfaJprJeSZ8T/DQ3Tm8fF1JqxRECPzctdc08tqeMMV1VASnRUzLen00lmaSVnHfWBQyh6Xwyz0lcSLR8Wt9ElE0/vW+JcfXo8cGueyKGayQHredWEEfl70JoPyXAyGONUFDnR6bf/aoMCmDZPVBrxlmcb+d+jiZ4sjvalXEq+k8fmEBLC/YxmneqHblFzRU7TUG0i6h"
+}
