@@ -1,0 +1,30 @@
+---
+- name: Block
+  block:
+    - name: Create code directory
+      file:
+        dest: "{{ code_dir }}"
+        state: directory
+
+    - name: Get latest application code from Github
+      git:
+        repo: "git@github.com:{{ repo_name }}"
+        version: "{{ branch_name }}"
+        dest: "{{ code_dir }}"
+
+    - name: Install Python libraries
+      pip: 
+        chdir: "{{ code_dir }}"
+        requirements: "requirements.txt"
+        state: present 
+  
+    - name: Start FLask app
+      shell: "flask run -h {{ app_host }} -p {{ app_port }} &"
+      args: 
+        chdir: "{{ code_dir }}/app"
+  
+  rescue:
+    - name: Delete code directory
+      file:
+        dest: "{{ code_dir }}"
+        state: absent
