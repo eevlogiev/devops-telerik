@@ -30,6 +30,8 @@
         pull: true
         ports:
            - "{{ listen_port }}:{{ listen_port }}"
+        env: 
+          PORT: "{{ listen_port | string }}"
   
   rescue:
     - name: Delete code directory
