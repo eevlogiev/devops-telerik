@@ -1,10 +1,17 @@
 resource "aws_security_group" "flask" {
-  name        = "${local.name}-allow-ssh"
+  name        = "${local.name}-sg"
   description = "Allow Jenkins inbound traffic"
   ingress {
     description = "Allow SSH"
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [local.source_ip]
+  }
+  ingress {
+    description = "Allow Flask"
+    from_port   = 5000
+    to_port     = 5000
     protocol    = "tcp"
     cidr_blocks = [local.source_ip]
   }
