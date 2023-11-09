@@ -32,6 +32,11 @@
            - "{{ listen_port }}:{{ listen_port }}"
         env: 
           PORT: "{{ listen_port | string }}"
+        healthcheck:
+          test: ["CMD", "curl", "--fail", "http://localhost:{{ listen_port }}"]
+          interval: 10s
+          retries: 3
+          start_period: 5s
   
   rescue:
     - name: Delete code directory
