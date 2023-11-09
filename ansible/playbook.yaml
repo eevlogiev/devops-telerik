@@ -1,5 +1,5 @@
 - name: Deploy flask app
-  hosts: all
+  hosts: localhost
   gather_facts: no
   become: no
 
