@@ -14,11 +14,22 @@
 
     - name: Build Docker image
       docker_image:
-        name: flask:v1
         build:
           path: "{{ code_dir }}"
-          source: build
+        name: "{{ image_name }}"
+        tag: "{{ image_tag }}"
+        push: yes
+        source: build
         state: present
+
+    - name: Run Docker container
+      docker_container:
+        name: "{{ app_name }}"
+        state: started
+        image: "{{ image_name }}:{{ image_tag }}"
+        pull: true
+        ports:
+           - "{{ listen_port }}:{{ listen_port }}"
   
   rescue:
     - name: Delete code directory
