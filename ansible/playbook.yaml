@@ -3,10 +3,8 @@
   become: no
 
   vars:
-    app_host: "0.0.0.0"
-    app_port: "5001"
     repo_name: "eevlogiev/devops-telerik" 
     branch_name: "main"
  
   roles:
-    - role: roles/app
+    - role: roles/flask

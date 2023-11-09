@@ -1,0 +1,27 @@
+---
+- name: Block
+  block:
+    - name: Create code directory
+      file:
+        dest: "{{ code_dir }}"
+        state: directory
+
+    - name: Get latest application code from Github
+      git:
+        repo: "git@github.com:{{ repo_name }}"
+        version: "{{ branch_name }}"
+        dest: "{{ code_dir }}"
+
+    - name: Build Docker image
+      docker_image:
+        name: flask:v1
+        build:
+          path: "{{ code_dir }}"
+          source: build
+        state: present
+  
+  rescue:
+    - name: Delete code directory
+      file:
+        dest: "{{ code_dir }}"
+        state: absent
