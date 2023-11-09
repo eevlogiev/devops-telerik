@@ -1,1 +1,1 @@
-# devops-telerik
+# DevOps Course Project
