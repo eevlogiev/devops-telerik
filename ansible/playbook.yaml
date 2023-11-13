@@ -3,9 +3,8 @@
   gather_facts: no
   become: no
 
-  vars:
-    repo_name: "eevlogiev/devops-telerik" 
-    branch_name: "main"
+  vars_files:
+    - secrets.yaml
  
   roles:
     - role: roles/flask
