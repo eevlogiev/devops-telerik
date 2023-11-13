@@ -3,6 +3,9 @@
   gather_facts: no
   become: no
 
+  vars_files:
+    - secrets.yml
+    
   vars:
     repo_name: "eevlogiev/devops-telerik" 
     branch_name: "main"

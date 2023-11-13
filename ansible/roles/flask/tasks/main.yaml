@@ -12,6 +12,10 @@
         version: "{{ branch_name }}"
         dest: "{{ code_dir }}"
 
+      docker_login:
+        username: "{{ dockerhub_user }}"
+        password: "{{ dockerhub_pass }}"
+
     - name: Build Docker image
       docker_image:
         build:
