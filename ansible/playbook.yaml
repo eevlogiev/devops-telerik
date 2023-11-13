@@ -5,10 +5,6 @@
 
   vars_files:
     - secrets.yaml
-    
-  vars:
-    repo_name: "eevlogiev/devops-telerik" 
-    branch_name: "main"
  
   roles:
     - role: roles/flask
