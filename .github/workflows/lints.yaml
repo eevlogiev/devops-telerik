@@ -62,4 +62,4 @@ jobs:
     - uses: actions/setup-python@v3
     - name: Running unit test
       run: |
-            cd app & python -m unittest app_test.py
+            cd app && python -m unittest app_test.py
