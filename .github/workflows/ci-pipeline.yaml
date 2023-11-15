@@ -8,7 +8,7 @@ on:
 
 jobs:
   editorconfig:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: editorconfig-checker/action-editorconfig-checker@main
@@ -21,7 +21,7 @@ jobs:
 #          python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
     - uses: actions/checkout@v3
- #   - name: Set up Python ${{ matrix.python-version }}
+#   - name: Set up Python ${{ matrix.python-version }}
     - uses: actions/setup-python@v3
 #      with:
 #        python-version: ${{ matrix.python-version }}
@@ -49,7 +49,7 @@ jobs:
       - uses: nosborn/github-action-markdown-cli@v3.3.0
         with:
             files: ./README.md
-#            config_file: .markdownlint.yaml
+            config_file: .markdownlint.yaml
 #            dot: true
 #            ignore_files: examples/ignore/*
 #            ignore_path: examples/.markdownlintignore
@@ -57,6 +57,7 @@ jobs:
 
   unit-test:
     runs-on: ubuntu-latest
+    needs: [editorconfig, pylint, black_formatter, markdownlint-cli]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
@@ -90,3 +91,27 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+#          projectBaseDir: /
+        args: >
+          -Dsonar.organization=eevlogiev
+          -Dsonar.projectKey=eevlogiev_devops-telerik
+
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  build:
+    needs: [snyk]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build . --file Dockerfile --tag flask:${GIT_SHA}
