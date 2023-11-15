@@ -3,5 +3,5 @@ image_name: dictator1/flask
 image_tag: v2
 app_name: flask
 listen_port: 5001
-repo_name: "eevlogiev/devops-telerik" 
+repo_name: "eevlogiev/devops-telerik"
 branch_name: "main"

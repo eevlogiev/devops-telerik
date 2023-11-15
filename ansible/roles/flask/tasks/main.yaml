@@ -34,15 +34,15 @@
         image: "{{ image_name }}:{{ image_tag }}"
         pull: true
         ports:
-           - "{{ listen_port }}:{{ listen_port }}"
-        env: 
+          - "{{ listen_port }}:{{ listen_port }}"
+        env:
           PORT: "{{ listen_port | string }}"
         healthcheck:
           test: ["CMD", "curl", "--fail", "http://localhost:{{ listen_port }}"]
           interval: 10s
-          retries: 3
+          retries: 2
           start_period: 5s
-  
+
   rescue:
     - name: Delete code directory
       file:
