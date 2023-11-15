@@ -40,7 +40,7 @@
         healthcheck:
           test: ["CMD", "curl", "--fail", "http://localhost:{{ listen_port }}"]
           interval: 10s
-          retries: 3
+          retries: 2
           start_period: 5s
   
   rescue:
