@@ -1,12 +1,13 @@
+---
 name: Homework Demo
-run-name: ${{ github.actor }} is running his Homework 
+run-name: ${{ github.actor }} is running his Homework
 on:
-    pull_request:
-      paths:
+      pull_request:
+        paths:
         - '**.yaml'
 
 jobs:
-    yamllint:
+      yamllint:
           name: 'Yamllint'
           runs-on: ubuntu-latest
           steps:
