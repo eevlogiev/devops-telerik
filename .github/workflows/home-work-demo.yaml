@@ -1,6 +1,9 @@
 name: Homework Demo
 run-name: ${{ github.actor }} is running his Homework 
-on: [pull_request]
+on:
+    pull_request:
+      paths:
+        - '**.yaml'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
