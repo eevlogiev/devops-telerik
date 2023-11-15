@@ -3,6 +3,8 @@ name: Homework Demo
 run-name: ${{ github.actor }} is running his Homework
 on:
       pull_request:
+            branches:
+                - 'github-actions-homework'
             paths:
                 - '**.yaml'
 
