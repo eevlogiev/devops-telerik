@@ -1,9 +1,10 @@
 name: EditorConfig Checker
 
 on:
-  pull_request:
-    branches:
-        - 'releases/**'
+    push:
+        branches:
+          - '*'
+          - '!main'
 
 jobs:
   editorconfig:
