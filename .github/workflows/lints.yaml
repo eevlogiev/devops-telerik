@@ -54,3 +54,12 @@ jobs:
 #            ignore_files: examples/ignore/*
 #            ignore_path: examples/.markdownlintignore
 #            rules: examples/rules/custom.js
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - name: Running unit test
+      run: |
+            python -m unittest ./app)
