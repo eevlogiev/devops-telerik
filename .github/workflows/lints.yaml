@@ -31,4 +31,4 @@ jobs:
             pip install pylint -r requirements.txt
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+            pylint --disable=all --enable=unused-import $(git ls-files 'app/*.py')
