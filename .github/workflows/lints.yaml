@@ -32,3 +32,10 @@ jobs:
     - name: Analysing the code with pylint
       run: |
             pylint --disable=all --enable=unused-import $(git ls-files 'app/*.py')
+  black_formatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: psf/black@stable
+        with:
+          black_args: ". --check"
