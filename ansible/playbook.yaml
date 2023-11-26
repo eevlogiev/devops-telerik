@@ -5,6 +5,6 @@
 
   vars_files:
     - secrets.yaml
- 
+
   roles:
     - role: roles/flask
