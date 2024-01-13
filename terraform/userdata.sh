@@ -1,5 +1,5 @@
 #!/bin/bash
-       
+
 #######DOCKER#######
 apt-get update
 apt-get install ca-certificates curl gnupg -y
